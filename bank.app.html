@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        window.addEventListener('load', () =>{
+            let balance1 = 100;//başlangıçtaki para
+            const balanceElement = document.getElementById("balance");
+    
+            function sendMoney() {
+                console.log(balanceElement);
+                let newBalance = balanceElement
+                let currentBalance = parseFloat(balanceElement.textContent);
+                let amount = parseFloat(document.getElementById("amount").value);
+                 
+                newBalance = currentBalance-amount
+                if (newBalance < 0) {
+                    alert("Insufficient balance!");
+                    return;
+                }
+                balanceElement.textContent = newBalance + "TL";
+                console.log("New Balance: " + newBalance);
+            }
+
+            document.getElementById("sendMoney").addEventListener("click", sendMoney);
+        });
+
+        window.addEventListener('load', () => {
+            let balance1 = 100;
+            const balanceElement = document.getElementById("balance");
+
+            function depositMoney() {
+                console.log(balanceElement);
+                let newBalance = balanceElement
+                let currentBalance = parseFloat(balanceElement.textContent);
+                let amount = parseFloat(document.getElementById("amount").value);
+
+                newBalance = currentBalance + amount
+                if (newBalance < 0) {
+                    alert("Insufficient balance!");
+                    return;
+                }
+                balanceElement.textContent = newBalance + "TL";
+                console.log("New Balance: " + newBalance);
+            } 
+            
+            document.getElementById("depositMoney").addEventListener("click", depositMoney);
+        });
+     </script>
+    
+</head>
+<body>
+    <h1>ZEHRABANK</h1>
+<div> 
+<h3>Balance</h3>
+<p id = "balance">1000 TL</p>
+<input class="box" type="number" id = "amount" placeholder="Enter the amount">
+<br>
+    <button  id="depositMoney"><h2>Deposit Money</h2></button>
+    <button  id="sendMoney"><h2>Send Money</h2></button>
+</div>  
+  <style>
+    body {
+        background-color: rgb(162, 4, 4);
+        color: aliceblue;
+    }
+
+    h1{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30vh;
+        font-size: 38px;
+        font-style: italic;
+    }
+
+    h2{
+        color: rgb(162, 4, 4); 
+        font-style: italic;
+    }
+
+    h3{
+        position: absolute;
+        top: 20%;
+        right: 42%;
+        font-size: 45px;
+        font-size: 35px;
+        font-style: italic;
+    }
+
+
+   #balance {
+        position: absolute;
+        top: 26%;
+        right: 42%;
+        font-size: 45px;
+        outline: solid rgb(106, 54, 54) 3px;
+        background-color: rgba(225, 160, 160, 0.879);
+        border-radius: 15%;
+        width: 160px;
+        height: 60px;
+   }
+
+   .box {
+        position: absolute;
+        top: 42%;
+        right: 40%;
+        height: 35px;
+    }
+
+    #depositMoney {
+        position: absolute;
+        top: 55%;
+        left: 15%;
+        width: 250px;
+        height: 70px;
+        border-radius: 40%;
+        outline: solid rgb(118, 3, 3) ;
+        background-color: rgba(225, 160, 160, 0.879);
+    }
+
+
+
+    #sendMoney{
+        position: absolute;
+        top: 55%;
+        right: 15%;
+        width: 250px;
+        height: 70px;
+        border-radius: 40%;
+        outline: solid rgb(118, 3, 3) ;
+        background-color: rgba(225, 160, 160, 0.879);
+    }
+
+  </style> 
+  
+  
+</body>
+</html>
