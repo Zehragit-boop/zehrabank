@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+</head>
+<body>
+  <h1>Just do it.</h1>
+  <div class="container">
+  
+   <form id="task-form">
+    <input type="text" id="task-input" placeholder="Add a task" required/>
+    <button type="submit">I Got This!</button>
+   </form>
+   <ul id="task-list"></ul>
+  </div>
+  <p id="tarih"></p>
+
+  <style>
+    body {
+        background-color: #0f172a;
+        color: #f1f5f9;
+        font-family: 'Segoe UI', sans-serif;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 72px;
+        margin-top: 60px;
+        font-weight: bold;
+    }
+
+    p {
+        text-align: center;  
+        font-size: 14px; 
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+    } 
+    
+    form {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+        flex: 1;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 25px;
+        font-size: 16px;
+        outline: none;
+    }
+    button {
+        padding: 12px 20px;
+        border: none;
+        border-radius: 25px;
+        background-color: #1e40af;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+       
+    }
+
+    button:hover {
+       background-color: #2563eb;
+    }
+
+    #task-list {
+       list-style: none;
+       padding: 0;
+    }
+
+    .task-item {
+        background-color: #1e293b;
+        border-radius: 25px;
+        padding: 10px 20px;
+        margin: 10px 0;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center; 
+    }
+
+    .task-item.completed {
+        text-decoration: line-through;
+        opacity: 0.6;
+    }
+    
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded' , () => {
+        const taskForm = document.getElementById('task-form');
+        const taskInput = document.getElementById('task-input');
+        const taskList = document.getElementById('task-list');
+
+        taskForm.addEventListener('submit' , (e) => {
+            e.preventDefault();
+            const taskText = taskInput.value.trim();
+            if (taskText !== '') {
+                addTask(taskText);
+                taskInput.value = '';
+            }
+        });
+
+        function addTask(text) {
+          const li = document.createElement('li');
+          li.className = 'task-item';
+
+          const span = document.createElement('span');
+          span.textContent = text;
+          li.appendChild(span);
+
+          const completeBtn = document.createElement('button');
+          completeBtn.textContent = '✓';
+          completeBtn.addEventListener('click', () => {
+            li.classList.toggle('completed');
+    });
+    li.appendChild(completeBtn);
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = '🗑️';
+    deleteBtn.addEventListener('click' , () => {
+        taskList.removeChild(li);
+    });
+    li.appendChild(deleteBtn);
+
+    taskList.appendChild(li);
+  }
+});
+    const bugun = new Date();
+    const tarih = bugun.toLocaleDateString('tr-TR', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+    document.getElementById("tarih").innerText = tarih;
+  </script>
+
+
+</body>
+</html>
